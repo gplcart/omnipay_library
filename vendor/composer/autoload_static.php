@@ -19,7 +19,14 @@ class ComposerStaticInitdcd62fa483adfacc69c69312fa2dfaff
         ),
         'O' => 
         array (
+            'Omnipay\\WorldPay\\' => 17,
+            'Omnipay\\WebMoney\\' => 17,
+            'Omnipay\\WePay\\' => 14,
+            'Omnipay\\TwoCheckoutPlus\\' => 24,
+            'Omnipay\\Stripe\\' => 15,
             'Omnipay\\PayPal\\' => 15,
+            'Omnipay\\GlobalAlipay\\' => 21,
+            'Omnipay\\AuthorizeNet\\' => 21,
         ),
     );
 
@@ -36,15 +43,47 @@ class ComposerStaticInitdcd62fa483adfacc69c69312fa2dfaff
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
+        'Omnipay\\WorldPay\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/omnipay/worldpay/src',
+        ),
+        'Omnipay\\WebMoney\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dercoder/omnipay-webmoney/src',
+        ),
+        'Omnipay\\WePay\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/collizo4sky/omnipay-wepay/src',
+        ),
+        'Omnipay\\TwoCheckoutPlus\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/collizo4sky/omnipay-2checkout/src',
+        ),
+        'Omnipay\\Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/omnipay/stripe/src',
+        ),
         'Omnipay\\PayPal\\' => 
         array (
             0 => __DIR__ . '/..' . '/omnipay/paypal/src',
+        ),
+        'Omnipay\\GlobalAlipay\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lokielse/omnipay-global-alipay/src',
+        ),
+        'Omnipay\\AuthorizeNet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/omnipay/authorizenet/src',
         ),
     );
 
     public static $prefixesPsr0 = array (
         'O' => 
         array (
+            'Omnipay\\Skrill\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/alfaproject/omnipay-skrill/src',
+            ),
             'Omnipay\\Common\\' => 
             array (
                 0 => __DIR__ . '/..' . '/omnipay/common/src',
