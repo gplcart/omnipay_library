@@ -10,6 +10,8 @@
 namespace gplcart\modules\omnipay_library;
 
 use gplcart\core\Library;
+use gplcart\core\models\Language as LanguageModel;
+use gplcart\core\helpers\Session as SessionHelper;
 
 /**
  * Main class for Omnipay Library module
@@ -24,12 +26,29 @@ class OmnipayLibrary
     protected $library;
 
     /**
+     * Language model instance
+     * @var \gplcart\core\models\Language $language
+     */
+    protected $language;
+
+    /**
+     * Session helper class instance
+     * @var \gplcart\core\classes\Session $session
+     */
+    protected $session;
+
+    /**
      * Constructor
      * @param Library $library
+     * @param LanguageModel $language
+     * @param SessionHelper $session
      */
-    public function __construct(Library $library)
+    public function __construct(Library $library, LanguageModel $language,
+            SessionHelper $session)
     {
         $this->library = $library;
+        $this->session = $session;
+        $this->language = $language;
     }
 
     /**
@@ -40,7 +59,7 @@ class OmnipayLibrary
     {
         return array(
             'core' => '1.x',
-            'version' => '1.0.0-alfa.1',
+            'version' => '1.0.0-alfa.2',
             'author' => 'Iurii Makukh',
             'name' => 'Omnipay library',
             'description' => 'A helper module that just provides <a href="https://github.com/thephpleague/omnipay">Omnipay</a> library'
@@ -68,39 +87,39 @@ class OmnipayLibrary
     }
 
     /**
-     * Implements "afterEnable" callback
-     * @see \gplcart\core\models\Module
+     * Implements hook "module.enable.after"
      */
-    public function afterEnable()
+    public function hookModuleEnableAfter()
     {
         $this->library->clearCache();
+        $this->session->setMessage($this->language->text('Cache has been cleared'), 'success');
     }
 
     /**
-     * Implements "afterDisable" callback
-     * @see \gplcart\core\models\Module
+     * Implements hook "module.disable.after"
      */
-    public function afterDisable()
+    public function hookModuleDisableAfter()
     {
         $this->library->clearCache();
+        $this->session->setMessage($this->language->text('Cache has been cleared'), 'success');
     }
 
     /**
-     * Implements "afterInstall" callback
-     * @see \gplcart\core\models\Module
+     * Implements hook "module.install.after"
      */
-    public function afterInstall()
+    public function hookModuleInstallAfter()
     {
         $this->library->clearCache();
+        $this->session->setMessage($this->language->text('Cache has been cleared'), 'success');
     }
 
     /**
-     * Implements "afterUninstall" callback
-     * @see \gplcart\core\models\Module
+     * Implements hook "module.uninstall.after"
      */
-    public function afterUninstall()
+    public function hookModuleUninstallAfter()
     {
         $this->library->clearCache();
+        $this->session->setMessage($this->language->text('Cache has been cleared'), 'success');
     }
 
 }
