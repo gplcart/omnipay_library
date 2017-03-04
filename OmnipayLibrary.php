@@ -11,7 +11,6 @@ namespace gplcart\modules\omnipay_library;
 
 use gplcart\core\Library;
 use gplcart\core\models\Language as LanguageModel;
-use gplcart\core\helpers\Session as SessionHelper;
 
 /**
  * Main class for Omnipay Library module
@@ -32,22 +31,13 @@ class OmnipayLibrary
     protected $language;
 
     /**
-     * Session helper class instance
-     * @var \gplcart\core\classes\Session $session
-     */
-    protected $session;
-
-    /**
      * Constructor
      * @param Library $library
      * @param LanguageModel $language
-     * @param SessionHelper $session
      */
-    public function __construct(Library $library, LanguageModel $language,
-            SessionHelper $session)
+    public function __construct(Library $library, LanguageModel $language)
     {
         $this->library = $library;
-        $this->session = $session;
         $this->language = $language;
     }
 
@@ -87,12 +77,75 @@ class OmnipayLibrary
     }
 
     /**
+     * Retuns registered namespaces from composer's autoload file
+     * @return array
+     */
+    protected function getGatewayNamespaces()
+    {
+        $file = __DIR__ . '/vendor/composer/autoload_psr4.php';
+        if (is_readable($file)) {
+            $namespaces = include $file;
+            return array_keys($namespaces);
+        }
+        return array();
+    }
+
+    /**
+     * Returns an array of gateways extracted from registered namespaces
+     * @return array
+     */
+    public function getGatewayIds()
+    {
+        $gateways = array();
+
+        foreach ($this->getGatewayNamespaces() as $namespace) {
+            if (strpos($namespace, 'Omnipay') !== 0) {
+                continue;
+            }
+            $matches = array();
+            preg_match('/Omnipay\\\(.+?)\\\/', $namespace, $matches);
+
+            if (isset($matches[1])) {
+                $gateways[] = $matches[1];
+            }
+        }
+
+        return $gateways;
+    }
+
+    /**
+     * Returns an array of registered gateway instances
+     * @return null|object|array
+     */
+    public function getGatewayInstance($gateway = null)
+    {
+        $this->library->load('omnipay');
+
+        foreach ($this->getGatewayIds() as $id) {
+            $class = \Omnipay\Common\Helper::getGatewayClassName($id);
+            if (class_exists($class)) {
+                \Omnipay\Omnipay::register($id);
+            }
+        }
+
+        $instances = array();
+        foreach (\Omnipay\Omnipay::find() as $id) {
+            $instances[$id] = \Omnipay\Omnipay::create($id);
+        }
+
+        if (isset($gateway)) {
+            return empty($instances[$gateway]) ? null : $instances[$gateway];
+        }
+
+        return $instances;
+    }
+
+    /**
      * Implements hook "module.enable.after"
      */
     public function hookModuleEnableAfter()
     {
         $this->library->clearCache();
-        $this->session->setMessage($this->language->text('Cache has been cleared'), 'success');
     }
 
     /**
@@ -101,7 +154,6 @@ class OmnipayLibrary
     public function hookModuleDisableAfter()
     {
         $this->library->clearCache();
-        $this->session->setMessage($this->language->text('Cache has been cleared'), 'success');
     }
 
     /**
@@ -110,7 +162,6 @@ class OmnipayLibrary
     public function hookModuleInstallAfter()
     {
         $this->library->clearCache();
-        $this->session->setMessage($this->language->text('Cache has been cleared'), 'success');
     }
 
     /**
@@ -119,7 +170,6 @@ class OmnipayLibrary
     public function hookModuleUninstallAfter()
     {
         $this->library->clearCache();
-        $this->session->setMessage($this->language->text('Cache has been cleared'), 'success');
     }
 
 }
