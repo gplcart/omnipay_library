@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package GPL Cart core
+ * @package Omnipay Library
  * @author Iurii Makukh <gplcart.software@gmail.com>
  * @copyright Copyright (c) 2015, Iurii Makukh
  * @license https://www.gnu.org/licenses/gpl.html GNU/GPLv3
@@ -48,12 +48,12 @@ class OmnipayLibrary
     }
 
     /**
-     * Implements hook "library.config"
-     * @param array $configs
+     * Implements hook "library.list"
+     * @param array $libraries
      */
-    public function hookLibraryConfig(array &$configs)
+    public function hookLibraryList(array &$libraries)
     {
-        $configs['omnipay/common']['omnipay'] = array(
+        $libraries['omnipay'] = array(
             'name' => 'Omnipay',
             'description' => 'A framework agnostic, multi-gateway payment processing library for PHP 5.3+',
             'url' => 'https://github.com/thephpleague/omnipay',
@@ -74,11 +74,13 @@ class OmnipayLibrary
     protected function getGatewayNamespaces()
     {
         $file = __DIR__ . '/vendor/composer/autoload_psr4.php';
-        if (is_readable($file)) {
-            $namespaces = include $file;
-            return array_keys($namespaces);
+
+        if (!is_readable($file)) {
+            return array();
         }
-        return array();
+
+        $namespaces = include $file;
+        return array_keys($namespaces);
     }
 
     /**
@@ -110,7 +112,7 @@ class OmnipayLibrary
      */
     public function getGatewayInstance($gateway = null)
     {
-        $this->library->load('omnipay');
+        require __DIR__ . '/vendor/autoload.php';
 
         foreach ($this->getGatewayIds() as $id) {
             $class = \Omnipay\Common\Helper::getGatewayClassName($id);
