@@ -10,7 +10,6 @@
 namespace gplcart\modules\omnipay_library;
 
 use gplcart\core\Library;
-use gplcart\core\models\Language as LanguageModel;
 
 /**
  * Main class for Omnipay Library module
@@ -25,20 +24,12 @@ class OmnipayLibrary
     protected $library;
 
     /**
-     * Language model instance
-     * @var \gplcart\core\models\Language $language
-     */
-    protected $language;
-
-    /**
      * Constructor
      * @param Library $library
-     * @param LanguageModel $language
      */
-    public function __construct(Library $library, LanguageModel $language)
+    public function __construct(Library $library)
     {
         $this->library = $library;
-        $this->language = $language;
     }
 
     /**
