@@ -1,13 +1,23 @@
 {
+    "name": "gplcart/omnipay_library",
+    "type": "gplcart-module",
+    "description": "An API module that provides Omnipay library for other GplCart modules",
+    "keywords": ["gplcart", "ecommerce", "shopping cart", "gplcart-module", "omnipay", "gplcart-payment-module"],
+    "homepage": "https://github.com/gplcart/omnipay_library",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Iurii Makukh",
+            "email": "gplcart.software@gmail.com",
+            "role": "lead"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/gplcart/omnipay_library/issues"
+    },
     "require": {
-        "omnipay/paypal": "~2.0",
-        "collizo4sky/omnipay-2checkout": "^1.4",
-        "lokielse/omnipay-global-alipay": "^1.0",
-        "omnipay/authorizenet": "^2.4",
-        "alfaproject/omnipay-skrill": "dev-master",
-        "omnipay/stripe": "~2.0",
-        "dercoder/omnipay-webmoney": "~1.0",
-        "collizo4sky/omnipay-wepay": "~1.0",
-        "omnipay/worldpay": "~2.0"
-    }
+        "gplcart/composer-module-installer": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
