@@ -5,5 +5,5 @@ Omnipay Library is a helper module for [GPL Cart](https://github.com/gplcart/gpl
 
 **Installation**
 
-1. Download and extract to `system/modules`
+1. Download and extract to `system/modules` manually or using composer `composer require gplcart/omnipay_library`. IMPORTANT: If you downloaded the module manually, be sure that the name of extracted module folder doesn't contain a branch/version suffix, e.g `-master`. Rename if needed.
 2. Go to `admin/module/list` end enable the module
