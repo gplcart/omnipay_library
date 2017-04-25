@@ -9,12 +9,12 @@
 
 namespace gplcart\modules\omnipay_library;
 
-use gplcart\core\Library;
+use gplcart\core\Module;
 
 /**
  * Main class for Omnipay Library module
  */
-class OmnipayLibrary
+class OmnipayLibrary extends Module
 {
 
     /**
@@ -29,22 +29,9 @@ class OmnipayLibrary
      */
     public function __construct(Library $library)
     {
-        $this->library = $library;
-    }
+        parent::__construct();
 
-    /**
-     * Module info
-     * @return array
-     */
-    public function info()
-    {
-        return array(
-            'core' => '1.x',
-            'version' => '1.0.0-alfa.2',
-            'author' => 'Iurii Makukh',
-            'name' => 'Omnipay library',
-            'description' => 'A helper module that just provides <a href="https://github.com/thephpleague/omnipay">Omnipay</a> library'
-        );
+        $this->library = $library;
     }
 
     /**
