@@ -9,7 +9,8 @@
 
 namespace gplcart\modules\omnipay_library;
 
-use gplcart\core\Module;
+use gplcart\core\Module,
+    gplcart\core\Library;
 
 /**
  * Main class for Omnipay Library module
@@ -24,7 +25,6 @@ class OmnipayLibrary extends Module
     protected $library;
 
     /**
-     * Constructor
      * @param Library $library
      */
     public function __construct(Library $library)
@@ -79,9 +79,11 @@ class OmnipayLibrary extends Module
         $gateways = array();
 
         foreach ($this->getGatewayNamespaces() as $namespace) {
+
             if (strpos($namespace, 'Omnipay') !== 0) {
                 continue;
             }
+
             $matches = array();
             preg_match('/Omnipay\\\(.+?)\\\/', $namespace, $matches);
 
