@@ -9,29 +9,19 @@
 
 namespace gplcart\modules\omnipay_library;
 
-use gplcart\core\Module,
-    gplcart\core\Library;
+use gplcart\core\Module;
 
 /**
  * Main class for Omnipay Library module
  */
 class OmnipayLibrary extends Module
 {
-
     /**
-     * Library class instance
-     * @var \gplcart\core\Library $library
+     * Constructor
      */
-    protected $library;
-
-    /**
-     * @param Library $library
-     */
-    public function __construct(Library $library)
+    public function __construct()
     {
         parent::__construct();
-
-        $this->library = $library;
     }
 
     /**
@@ -127,7 +117,7 @@ class OmnipayLibrary extends Module
      */
     public function hookModuleEnableAfter()
     {
-        $this->library->clearCache();
+        $this->getLibrary()->clearCache();
     }
 
     /**
@@ -135,7 +125,7 @@ class OmnipayLibrary extends Module
      */
     public function hookModuleDisableAfter()
     {
-        $this->library->clearCache();
+        $this->getLibrary()->clearCache();
     }
 
     /**
@@ -143,7 +133,7 @@ class OmnipayLibrary extends Module
      */
     public function hookModuleInstallAfter()
     {
-        $this->library->clearCache();
+        $this->getLibrary()->clearCache();
     }
 
     /**
@@ -151,7 +141,7 @@ class OmnipayLibrary extends Module
      */
     public function hookModuleUninstallAfter()
     {
-        $this->library->clearCache();
+        $this->getLibrary()->clearCache();
     }
 
 }
