@@ -16,6 +16,7 @@ use gplcart\core\Module;
  */
 class OmnipayLibrary extends Module
 {
+
     /**
      * Constructor
      */
@@ -45,7 +46,7 @@ class OmnipayLibrary extends Module
     }
 
     /**
-     * Retuns registered namespaces from composer's autoload file
+     * Returns registered namespaces from composer's autoload file
      * @return array
      */
     protected function getGatewayNamespaces()
