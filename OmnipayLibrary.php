@@ -88,7 +88,8 @@ class OmnipayLibrary extends Module
 
     /**
      * Returns an array of registered gateway instances
-     * @return null|object|array
+     * @param null|string $gateway
+     * @return mixed
      */
     public function getGatewayInstance($gateway = null)
     {
