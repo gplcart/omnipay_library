@@ -3,5 +3,5 @@
     "version": "1.0.0-dev",
     "author": "Iurii Makukh",
     "name": "Omnipay library",
-    "description": "A helper module that just provides <a href=\"https://github.com/thephpleague/omnipay\">Omnipay</a> library"
+    "description": "Adds <a href=\"https://github.com/thephpleague/omnipay\">Omnipay</a> library"
 }

@@ -32,8 +32,8 @@ class OmnipayLibrary extends Module
     public function hookLibraryList(array &$libraries)
     {
         $libraries['omnipay'] = array(
-            'name' => 'Omnipay',
-            'description' => 'A framework agnostic, multi-gateway payment processing library for PHP 5.3+',
+            'name' => /* @text */'Omnipay',
+            'description' => /* @text */'A framework agnostic, multi-gateway payment processing library for PHP 5.3+',
             'url' => 'https://github.com/thephpleague/omnipay',
             'download' => 'https://github.com/thephpleague/omnipay-common/archive/2.5.2.zip',
             'type' => 'php',
