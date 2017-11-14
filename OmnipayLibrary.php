@@ -47,19 +47,35 @@ class OmnipayLibrary extends Module
     }
 
     /**
-     * Returns registered namespaces from composer's autoload file
-     * @return array
+     * Implements hook "module.enable.after"
      */
-    protected function getGatewayNamespaces()
+    public function hookModuleEnableAfter()
     {
-        $file = __DIR__ . '/vendor/composer/autoload_psr4.php';
+        $this->getLibrary()->clearCache();
+    }
 
-        if (!is_readable($file)) {
-            return array();
-        }
+    /**
+     * Implements hook "module.disable.after"
+     */
+    public function hookModuleDisableAfter()
+    {
+        $this->getLibrary()->clearCache();
+    }
 
-        $namespaces = include $file;
-        return array_keys($namespaces);
+    /**
+     * Implements hook "module.install.after"
+     */
+    public function hookModuleInstallAfter()
+    {
+        $this->getLibrary()->clearCache();
+    }
+
+    /**
+     * Implements hook "module.uninstall.after"
+     */
+    public function hookModuleUninstallAfter()
+    {
+        $this->getLibrary()->clearCache();
     }
 
     /**
@@ -116,35 +132,19 @@ class OmnipayLibrary extends Module
     }
 
     /**
-     * Implements hook "module.enable.after"
+     * Returns registered namespaces from composer's autoload file
+     * @return array
      */
-    public function hookModuleEnableAfter()
+    protected function getGatewayNamespaces()
     {
-        $this->getLibrary()->clearCache();
-    }
+        $file = __DIR__ . '/vendor/composer/autoload_psr4.php';
 
-    /**
-     * Implements hook "module.disable.after"
-     */
-    public function hookModuleDisableAfter()
-    {
-        $this->getLibrary()->clearCache();
-    }
+        if (!is_readable($file)) {
+            return array();
+        }
 
-    /**
-     * Implements hook "module.install.after"
-     */
-    public function hookModuleInstallAfter()
-    {
-        $this->getLibrary()->clearCache();
-    }
-
-    /**
-     * Implements hook "module.uninstall.after"
-     */
-    public function hookModuleUninstallAfter()
-    {
-        $this->getLibrary()->clearCache();
+        $namespaces = include $file;
+        return array_keys($namespaces);
     }
 
 }
