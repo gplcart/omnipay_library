@@ -9,21 +9,26 @@
 
 namespace gplcart\modules\omnipay_library;
 
-use gplcart\core\Module,
-    gplcart\core\Config;
+use gplcart\core\Library;
 
 /**
  * Main class for Omnipay Library module
  */
-class OmnipayLibrary extends Module
+class OmnipayLibrary
 {
 
     /**
-     * @param Config $config
+     * Library class instance
+     * @var \gplcart\core\Library $library
      */
-    public function __construct(Config $config)
+    protected $library;
+
+    /**
+     * @param Library $library
+     */
+    public function __construct(Library $library)
     {
-        parent::__construct($config);
+        $this->library = $library;
     }
 
     /**
@@ -51,7 +56,7 @@ class OmnipayLibrary extends Module
      */
     public function hookModuleEnableAfter()
     {
-        $this->getLibrary()->clearCache();
+        $this->library->clearCache();
     }
 
     /**
@@ -59,7 +64,7 @@ class OmnipayLibrary extends Module
      */
     public function hookModuleDisableAfter()
     {
-        $this->getLibrary()->clearCache();
+        $this->library->clearCache();
     }
 
     /**
@@ -67,7 +72,7 @@ class OmnipayLibrary extends Module
      */
     public function hookModuleInstallAfter()
     {
-        $this->getLibrary()->clearCache();
+        $this->library->clearCache();
     }
 
     /**
@@ -75,7 +80,7 @@ class OmnipayLibrary extends Module
      */
     public function hookModuleUninstallAfter()
     {
-        $this->getLibrary()->clearCache();
+        $this->library->clearCache();
     }
 
     /**
@@ -85,7 +90,6 @@ class OmnipayLibrary extends Module
     public function getGatewayIds()
     {
         $gateways = array();
-
         foreach ($this->getGatewayNamespaces() as $namespace) {
 
             if (strpos($namespace, 'Omnipay') !== 0) {
