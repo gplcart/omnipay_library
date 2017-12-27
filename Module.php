@@ -14,7 +14,7 @@ use gplcart\core\Library;
 /**
  * Main class for Omnipay Library module
  */
-class OmnipayLibrary
+class Module
 {
 
     /**
