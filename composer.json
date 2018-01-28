@@ -1,11 +1,18 @@
 {
-    "name": "gplcart/omnipay_library",
-    "type": "gplcart-module",
-    "description": "An API module that provides Omnipay library for other GplCart modules",
-    "keywords": ["gplcart", "ecommerce", "shopping cart", "gplcart-module", "omnipay", "gplcart-payment-module"],
-    "require": {
-        "gplcart/composer-module-installer": "*"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "gplcart/omnipay_library",
+  "type": "gplcart-module",
+  "description": "An API module that provides Omnipay library for other GplCart modules",
+  "keywords": [
+    "gplcart",
+    "ecommerce",
+    "shopping cart",
+    "gplcart-module",
+    "omnipay",
+    "gplcart-payment-module"
+  ],
+  "require": {
+    "gplcart/composer-module-installer": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
