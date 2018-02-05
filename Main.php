@@ -38,8 +38,8 @@ class Main
     public function hookLibraryList(array &$libraries)
     {
         $libraries['omnipay'] = array(
-            'name' => /* @text */'Omnipay',
-            'description' => /* @text */'A framework agnostic, multi-gateway payment processing library for PHP 5.3+',
+            'name' => 'Omnipay', // @text
+            'description' => 'A framework agnostic, multi-gateway payment processing library for PHP 5.3+', // @text
             'url' => 'https://github.com/thephpleague/omnipay',
             'download' => 'https://github.com/thephpleague/omnipay-common/archive/2.5.2.zip',
             'type' => 'php',
