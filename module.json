@@ -1,7 +1,7 @@
 {
-    "core": "1.x",
-    "version": "1.0.0-dev",
-    "author": "Iurii Makukh",
-    "name": "Omnipay library",
-    "description": "Adds <a href=\"https://github.com/thephpleague/omnipay\">Omnipay</a> library"
+  "core": "1.x",
+  "version": "1.0.0-dev",
+  "author": "Iurii Makukh",
+  "name": "Omnipay library",
+  "description": "Adds <a href=\"https://github.com/thephpleague/omnipay\">Omnipay</a> library"
 }

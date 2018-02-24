@@ -87,7 +87,7 @@ class Main
      * Returns an array of gateways extracted from registered namespaces
      * @return array
      */
-    public function getGatewayIds()
+    public function getGateways()
     {
         $gateways = array();
         foreach ($this->getGatewayNamespaces() as $namespace) {
@@ -116,7 +116,7 @@ class Main
     {
         require __DIR__ . '/vendor/autoload.php';
 
-        foreach ($this->getGatewayIds() as $id) {
+        foreach ($this->getGateways() as $id) {
             $class = \Omnipay\Common\Helper::getGatewayClassName($id);
             if (class_exists($class)) {
                 \Omnipay\Omnipay::register($id);
