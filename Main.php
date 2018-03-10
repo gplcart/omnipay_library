@@ -9,27 +9,11 @@
 
 namespace gplcart\modules\omnipay_library;
 
-use gplcart\core\Library;
-
 /**
  * Main class for Omnipay Library module
  */
 class Main
 {
-
-    /**
-     * Library class instance
-     * @var \gplcart\core\Library $library
-     */
-    protected $library;
-
-    /**
-     * @param Library $library
-     */
-    public function __construct(Library $library)
-    {
-        $this->library = $library;
-    }
 
     /**
      * Implements hook "library.list"
@@ -50,44 +34,13 @@ class Main
     }
 
     /**
-     * Implements hook "module.enable.after"
-     */
-    public function hookModuleEnableAfter()
-    {
-        $this->library->clearCache();
-    }
-
-    /**
-     * Implements hook "module.disable.after"
-     */
-    public function hookModuleDisableAfter()
-    {
-        $this->library->clearCache();
-    }
-
-    /**
-     * Implements hook "module.install.after"
-     */
-    public function hookModuleInstallAfter()
-    {
-        $this->library->clearCache();
-    }
-
-    /**
-     * Implements hook "module.uninstall.after"
-     */
-    public function hookModuleUninstallAfter()
-    {
-        $this->library->clearCache();
-    }
-
-    /**
      * Returns an array of gateways extracted from registered namespaces
      * @return array
      */
     public function getGateways()
     {
         $gateways = array();
+
         foreach ($this->getGatewayNamespaces() as $namespace) {
 
             if (strpos($namespace, 'Omnipay') !== 0) {
