@@ -45,9 +45,7 @@ class Main
             'type' => 'php',
             'version' => '2.5.2',
             'module' => 'omnipay_library',
-            'files' => array(
-                'vendor/autoload.php'
-            )
+            'vendor' => 'omnipay/common',
         );
     }
 
@@ -141,7 +139,7 @@ class Main
      */
     protected function getGatewayNamespaces()
     {
-        $file = __DIR__ . '/vendor/composer/autoload_psr4.php';
+        $file = GC_DIR_VENDOR . '/composer/autoload_psr4.php';
 
         if (!is_readable($file)) {
             return array();
