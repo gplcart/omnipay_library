@@ -11,8 +11,7 @@
     "gplcart-payment-module"
   ],
   "require": {
-    "gplcart/composer-module-installer": "*"
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "gplcart/composer-module-installer": "^1",
+    "omnipay/common": "2.5.2"
+  }
 }
